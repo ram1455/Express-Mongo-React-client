@@ -20,7 +20,7 @@ const Detail = () => {
   const {id} = useParams();
 
   const getDataById =  async()=> {
-      const response = await axios.get(`http://localhost:${port}/api/v4/product/${id}`);
+      const response = await axios.get(`https://express-mongo-api-backend.herokuapp.com/api/v2/product/${id}`);
       let theData = response.data
       setName(theData.name)
       setEdi(theData._id)

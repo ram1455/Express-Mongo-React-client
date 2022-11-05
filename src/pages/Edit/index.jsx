@@ -1,9 +1,8 @@
 import Input from "../../components/Input";
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
-import {useParams} from 'react-router-dom'
+import {useParams, useHistory} from 'react-router-dom'
 
-const port = process.env.PORT || 3000
 
 const ShowError = ({errors})=>{
   return  <ul style={{color:'red', marginLeft:'15px', marginBottom:'10px'}}>
@@ -17,6 +16,7 @@ const Edit = () => {
   let [price, setPrice] = useState('');
   let [stock, setStock] = useState('');
   let [status, setStatus] = useState(true);
+  const history = useHistory()
   const {id} = useParams()
 
   let [PriceErrors, setPriceErrors] = useState([]);
@@ -29,7 +29,7 @@ const Edit = () => {
   
 
   const getDataById = async () => {
-    const response = await axios.get(`http://localhost:${port}/api/v4/product/${id}`);
+    const response = await axios.get(`https://express-mongo-api-backend.herokuapp.com/api/v2/product/${id}`);
     const theData = response.data;
     setName(theData.name);
     setPrice(theData.price);
@@ -71,10 +71,12 @@ const Edit = () => {
     }
     else {
       try {
-        await axios.put(`http://localhost:${port}/api/v4/product/${id}`, {
+        await axios.put(`https://express-mongo-api-backend.herokuapp.com/api/v2/product/${id}`, {
           name, price, stock, status
+
         });
         alert('edit data berhasil');
+        history.push('/')
 
         setErrors([])
         setPriceErrors([])

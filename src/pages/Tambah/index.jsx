@@ -55,7 +55,7 @@ const Tambah = () => {
     }
     else {
       try {
-        await axios.post('http://localhost:3000/api/v4/product', {
+        await axios.post('https://express-mongo-api-backend.herokuapp.com/api/v2/product', {
           name, price, stock, status
         });
         alert('tambah data berhasil')

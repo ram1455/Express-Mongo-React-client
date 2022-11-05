@@ -7,7 +7,7 @@ const Home = () => {
   let [data, setdata] = useState([])  
 
   useEffect(() => {
-    getData('http://localhost:3000/api/v4/product') 
+    getData('https://express-mongo-api-backend.herokuapp.com/api/v2/product') 
   },[])
   console.log(data);
   const getData = async (url)=> {
@@ -19,8 +19,9 @@ const Home = () => {
     const konfirmasi =  window.confirm('yang bener?')
     if (konfirmasi) {
       try {
-        await axios.delete(`http://localhost:3000/api/v4/product/${id}`)
-        getData('http://localhost:3000/api/v4/product')
+        await axios.delete(`https://express-mongo-api-backend.herokuapp.com/api/v2/product/${id}`)
+        getData('https://express-mongo-api-backend.herokuapp.com/api/v2/product')
+
       } catch(e) {
         console.log(e);
       }
